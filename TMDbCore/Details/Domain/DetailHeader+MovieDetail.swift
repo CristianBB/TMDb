@@ -19,4 +19,5 @@ extension DetailHeader {
 
 		metadata = [year, duration].compactMap { $0 }.joined(separator: " - ")
     }
+    
 }

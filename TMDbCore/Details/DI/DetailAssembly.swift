@@ -39,6 +39,10 @@ final class DetailAssembly {
 	func personPresenter(identifier: Int64) -> DetailPresenter {
 		return PersonPresenter(repository: personRepository(), identifier: identifier)
 	}
+    
+    func showPresenter(identifier: Int64) -> DetailPresenter {
+        return ShowPresenter(detailNavigator: pushDetailNavigator, repository: showRepository(), identifier: identifier)
+    }
 
 	func movieRepository() -> MovieRepositoryProtocol {
 		return MovieRepository(webService: webServiceAssembly.webService)
@@ -47,6 +51,10 @@ final class DetailAssembly {
 	func personRepository() -> PersonRepository {
 		return PersonRepository(webService: webServiceAssembly.webService)
 	}
+    
+    func showRepository() -> ShowRepositoryProtocol {
+        return ShowRepository(webService: webServiceAssembly.webService)
+    }
 }
 
 extension DetailAssembly: DetailViewControllerProvider {
@@ -65,7 +73,7 @@ extension DetailAssembly: DetailViewControllerProvider {
 	}
 
 	func showViewController(withIdentifier identifier: Int64) -> UIViewController {
-		return DetailViewController(presenter: DummyDetailPresenter(),
+		return DetailViewController(presenter: showPresenter(identifier: identifier),
 									headerPresenter: detailHeaderPresenter(),
 									posterStripPresenter: posterStripPresenter())
 	}
