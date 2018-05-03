@@ -45,6 +45,10 @@ final class FeaturedPresenter {
 	func didSelect(movie: Movie) {
 		detailNavigator.navigateToMovie(withIdentifier: movie.identifier)
 	}
+    
+    func didSelect(person: Person) {
+        detailNavigator.navigateToPerson(withIdentifier: person.identifier)
+    }
 }
 
 private extension FeaturedPresenter {
