@@ -45,6 +45,7 @@ final class SearchResultsPresenter {
 		case .show(let show):
 			detailNavigator.navigateToShow(withIdentifier: show.identifier)
 		case .person(let person):
+            // CBB Aqui
             detailNavigator.navigateToPerson(withIdentifier: person.identifier)
 		}
 	}

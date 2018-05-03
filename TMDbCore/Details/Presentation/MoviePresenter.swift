@@ -9,6 +9,7 @@
 import RxSwift
 
 final class MoviePresenter: DetailPresenter {
+    private let detailNavigator: DetailNavigator
     private let repository: MovieRepositoryProtocol
     
     private let identifier: Int64
@@ -16,7 +17,8 @@ final class MoviePresenter: DetailPresenter {
     
     weak var view: DetailView?
     
-    init(repository: MovieRepositoryProtocol, identifier: Int64) {
+    init(detailNavigator: DetailNavigator, repository: MovieRepositoryProtocol, identifier: Int64) {
+        self.detailNavigator = detailNavigator
         self.repository = repository
         self.identifier = identifier
     }
@@ -38,6 +40,9 @@ final class MoviePresenter: DetailPresenter {
     }
     
     func didSelect(item: PosterStripItem) {
+        // CBB AQUI
+        detailNavigator.navigateToPerson(withIdentifier: item.identifier)
+        
     }
     
     private func detailSections(for movie: MovieDetail) -> [DetailSection] {
